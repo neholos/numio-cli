@@ -54,6 +54,7 @@ Output:
 ### Using Homebrew
 
 ```bash
+brew tap neholos/numio
 brew install numio-cli
 ```
 
