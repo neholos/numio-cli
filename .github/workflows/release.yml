@@ -29,8 +29,8 @@ jobs:
         run: |
           VERSION=$(git describe --tags --abbrev=0)  # Отримуємо останній тег для версії
           mkdir -p output  # Створюємо директорію для архіву
-          cp .build/release/numo-cli output/  # Копіюємо збудований файл
-          zip -r "numo-cli-${VERSION}-macOS.zip" output/numo-cli  # Архівуємо файл
+          cp .build/release/numio output/  # Копіюємо збудований файл
+          zip -r "numo-cli-${VERSION}-macOS.zip" output/numio  # Архівуємо файл
           mv "numo-cli-${VERSION}-macOS.zip" output/  # Переміщаємо ZIP до папки output
 
       # Крок 5: Завантаження архіву на GitHub Releases
