@@ -22,7 +22,7 @@ jobs:
       # Крок 3: Побудова проекту для macOS у конфігурації Release
       - name: Build the project for macOS
         run: |
-          swift build --platform macOS -c release
+          swift build -c release
 
       # Крок 4: Створення ZIP архіву для macOS
       - name: Create ZIP archive for macOS
