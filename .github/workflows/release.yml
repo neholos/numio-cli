@@ -30,13 +30,13 @@ jobs:
           VERSION=$(git describe --tags --abbrev=0)  # Отримуємо останній тег для версії
           mkdir -p output  # Створюємо директорію для архіву
           cp .build/release/numio output/  # Копіюємо збудований файл
-          zip -r "numo-cli-${VERSION}-macOS.zip" output/numio  # Архівуємо файл
-          mv "numo-cli-${VERSION}-macOS.zip" output/  # Переміщаємо ZIP до папки output
+          zip -r "numio-cli-${VERSION}-macOS.zip" output/numio  # Архівуємо файл
+          mv "numio-cli-${VERSION}-macOS.zip" output/  # Переміщаємо ZIP до папки output
 
       # Крок 5: Завантаження архіву на GitHub Releases
       - name: Upload release asset to GitHub
         uses: softprops/action-gh-release@v1
         with:
-          files: output/numo-cli-*.zip  # Завантажуємо всі файли ZIP
+          files: output/numio-cli-*.zip  # Завантажуємо всі файли ZIP
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Токен для авторизації
