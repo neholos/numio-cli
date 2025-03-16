@@ -1,0 +1,42 @@
+name: Build and Release macOS CLI
+
+on:
+  push:
+    tags:
+      - 'v*'  # Це запускає workflow, коли пушиться тег, що починається з "v" (наприклад, v1.0.0)
+
+jobs:
+  build:
+    runs-on: macos-latest  # Виконання на найновішій версії macOS
+
+    steps:
+      # Крок 1: Checkout репозиторію
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Крок 2: Налаштування Swift (macOS runner вже має Swift)
+      - name: Set up Swift
+        run: |
+          swift --version  # Перевірка версії Swift
+
+      # Крок 3: Побудова проекту для macOS у конфігурації Release
+      - name: Build the project for macOS
+        run: |
+          swift build --platform macOS -c release
+
+      # Крок 4: Створення ZIP архіву для macOS
+      - name: Create ZIP archive for macOS
+        run: |
+          VERSION=$(git describe --tags --abbrev=0)  # Отримуємо останній тег для версії
+          mkdir -p output  # Створюємо директорію для архіву
+          cp .build/release/numo-cli output/  # Копіюємо збудований файл
+          zip -r "numo-cli-${VERSION}-macOS.zip" output/numo-cli  # Архівуємо файл
+          mv "numo-cli-${VERSION}-macOS.zip" output/  # Переміщаємо ZIP до папки output
+
+      # Крок 5: Завантаження архіву на GitHub Releases
+      - name: Upload release asset to GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/numo-cli-*.zip  # Завантажуємо всі файли ZIP
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Токен для авторизації
