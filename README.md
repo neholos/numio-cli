@@ -84,4 +84,4 @@ If you'd like to contribute to this project, feel free to fork the repository, c
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the [MIT license](LICENSE.md).
