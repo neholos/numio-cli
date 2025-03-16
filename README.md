@@ -2,13 +2,13 @@
 
 Numio CLI is a command-line tool written in Swift to perform time calculations. It allows users to add or subtract time in the `HH:mm` or `HH` format.
 
-## Features
+## ✨ Features
 
 - Add or subtract time from a given starting time.
 - Works with time inputs in the `HH:mm` or `HH` format.
 - Supports simple time operations using `+` or `-` operators.
 
-## Usage
+## 🖥️ Usage
 
 ### Command Format
 
@@ -49,7 +49,7 @@ Output:
 - If an invalid operator (other than + or -) is used, an error will be thrown.
 - If the time calculation fails, an error message will be displayed.
 
-## Installation
+## ⚙️ Installation
 
 ### Using Homebrew
 
@@ -57,7 +57,7 @@ Output:
 brew install numio-cli
 ```
 
-## Build from Source
+## 🏗️ Build from Source
 
 If you prefer to build the project yourself, follow these steps:
 
@@ -78,7 +78,7 @@ If you prefer to build the project yourself, follow these steps:
    .build/debug/numio
    ```
 
-## Contributing
+## 🤝 Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository, create a branch, and submit a pull request with your changes.
 
