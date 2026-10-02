@@ -74,6 +74,14 @@ If you prefer to build the project yourself, follow these steps:
 
 If you'd like to contribute to this project, feel free to fork the repository, create a branch, and submit a pull request with your changes.
 
+### Using OpenCode
+
+1. Start OpenCode at the repository root, or open that repository in its UI. Project instructions in `AGENTS.md`, settings in `opencode.json`, and agents in `.opencode/` are project-scoped.
+2. Start with a GitHub issue that states the human owner, desired outcome, scope, and acceptance examples. For a small, clear change, ask the `implementer` directly; use `plan` first when behavior or approach is still unclear.
+3. Keep the change isolated to that issue. For time behavior, settle the spec examples before implementation. Ask the human owner rather than guessing at unresolved product decisions.
+4. Have the implementer run `swift build`, `swift test`, and relevant `swift run numio ...` examples. Review the diff against the issue; use the read-only `verifier` for non-trivial changes, and keep human review for agent/configuration and release changes.
+5. Use multiple agents only for independent work that can be split cleanly. Parallel subagents with the free Zen models failed in our trial, so fall back to one implementer, deterministic checks, and the optional verifier unless the provider path is confirmed working. Always integrate and verify the combined result before opening a pull request.
+
 ## 📄 License
 
 This project is licensed under the [MIT license](LICENSE.md).
