@@ -19,5 +19,10 @@ let package = Package(
             ],
             path: "Sources"
         ),
+        .testTarget(
+            name: "NumioCLITests",
+            dependencies: ["numio"],
+            path: "Tests"
+        )
     ]
 )

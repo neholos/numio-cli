@@ -12,36 +12,20 @@ Numio CLI is a command-line tool written in Swift to perform time calculations. 
 
 ### Command Format
 
-The CLI accepts three arguments:
+Numio accepts a small time expression with `+` and `-` operators:
 ```zsh
-numio <start-time> <operator> <add-time>
+numio <expression>
 ```
 
-- **start-time**: The starting time in HH:mm or HH format.
-- **operator**: Either + or - to add or subtract time.
-- **add-time**: The time to add or subtract in HH:mm or HH format.
-  
-### Example
+Examples:
+- `numio 12:30 + 02:15`
+- `numio 00:10 - 00:20`
+- `numio 12:00 + 1h 24min - 00:10`
 
-**Add Time**:
-```zsh
-numio 12:30 + 02:15
-```
-
-Output:
-```zsh
-14:45
-```
-
-**Subtract Time**:
-```zsh
-numio 14:45 - 01:30
-```
-
-Output:
-```zsh
-13:15
-```
+Supported operand forms:
+- clock times: `HH`, `HH:mm`, `HH:mm:ss`
+- durations: `1h`, `24min`, `90s`, `1h 24min`
+- bare numbers are treated as hours
 
 ### Error Handling
 
