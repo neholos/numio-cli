@@ -1,0 +1,15 @@
+# Rename to .github/CODEOWNERS and replace the handles with real GitHub users (humans only; agents are never owners).
+# Last matching pattern wins. See docs/decisions/ADR-0005-contracts-and-ownership-surfaces.md
+
+/Packages/NumioCore/     @core-owner
+/docs/specs/             @core-owner
+/Apps/cli/               @cli-owner
+/Apps/mac/               @mac-owner
+
+# Shared files: platform owner changes them, one party at a time
+/Package.swift           @platform-owner
+/.github/                @platform-owner
+/opencode.json           @platform-owner
+/.opencode/              @platform-owner
+/AGENTS.md               @platform-owner
+/docs/decisions/         @platform-owner
