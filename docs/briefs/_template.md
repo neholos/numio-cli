@@ -3,7 +3,7 @@
 - DRI (human): 
 - Date: 
 - Initiative: I-00X
-- Branch/worktree: agent/<slug> at ../numio-<slug>
+- Worktree/branch:
 - Appetite: (hours/days; scope is cut, not time extended)
 
 ## Goal
@@ -23,10 +23,10 @@ One sentence: what is true after this task that is not true now.
 - 
 
 ## Docs Impact
-Which README/CHANGELOG/spec sections change (proposed text), or "none". The docs-writer consolidates.
+Which README/CHANGELOG/spec sections change, or "none". Only update files in the allowed scope.
 
 ## Risks and Open Questions
 - 
 
 ## Verification
-Verifier checks scope (`git diff --name-only`), spec examples, `swift build`, `swift test`.
+Run the relevant build/tests and request an independent review when risk warrants it.

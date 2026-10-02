@@ -14,18 +14,18 @@ Agents: grep this file by module/tag/status, then open only matching docs (TL;DR
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| ADR-0000 | ADR Template | proposed |  | template | `docs/decisions/ADR-0000-template.md` | copy this file, write short: context, decision, consequences; don't delete old, change status. |
+| ADR-0000 | ADR Template | proposed |  | template | `docs/decisions/ADR-0000-template.md` | record a consequential choice and its rationale only when the why needs to outlive the issue or code. |
 | ADR-0001 | Single Repository (Monorepo) and Package Layout | accepted | NumioCore, cli | layout, monorepo, release | `docs/decisions/ADR-0001-monorepo-and-layout.md` | keep the current `numio-cli` repo as the monorepo for `Packages/NumioCore`, `Apps/cli`, a future `Apps/mac`, and `Formula/numio.rb`; users install through a custom tap URL, not a separate tap repository. |
-| ADR-0002 | OpenCode Agents and Model Assignment | proposed |  | opencode, agents, models, privacy, cost | `docs/decisions/ADR-0002-opencode-agents-and-models.md` | start on free Zen models (Nemotron 3 Ultra for planning/build, MiMo-V2.5 for verifier), different model families for author and reviewer, choice validated by bakeoff, not feeling. |
+| ADR-0002 | OpenCode Models for Implementation and Review | proposed |  | opencode, agents, models, privacy, cost | `docs/decisions/ADR-0002-opencode-agents-and-models.md` | Nemotron 3 Ultra Free is the implementation candidate and MiMo-V2.5 Free is the optional independent verifier; neither model's quality on this repository has been measured. |
 | ADR-0003 | DocC Only for NumioCore API, Process Docs Stay Markdown | proposed | NumioCore | docc, docs, github-pages | `docs/decisions/ADR-0003-docc-scope.md` | yes, add DocC, but only for public NumioCore API (and a few articles); pitches, ADRs, specs, initiatives stay plain Markdown with frontmatter for agents. |
-| ADR-0004 | Docs as Lazy Context (Progressive Disclosure) | proposed |  | context, docs, agents, skills | `docs/decisions/ADR-0004-docs-as-lazy-context.md` | context always has only short AGENTS.md and skill names; rest loaded via index, TL;DR, and explicit reading; measured with real question set. |
-| ADR-0005 | Contracts and Ownership: Core and Surfaces (Shortcuts/Spotlight) | proposed | NumioCore, cli, mac | contracts, ownership, spotlight, app-intents, teams | `docs/decisions/ADR-0005-contracts-and-ownership-surfaces.md` | team per surface, not per channel (`team-mac` = Apple surfaces), one owner per zone with open contributions, three contracts between core and surfaces; form team only after pitch, stable core API, and one-day spike. |
+| ADR-0004 | Docs as Lazy Context | proposed |  | context, docs, agents, skills | `docs/decisions/ADR-0004-docs-as-lazy-context.md` | keep always-loaded instructions short; load specs and the few task-specific skills only when relevant. |
+| ADR-0005 | Future Mac App and App Intents Boundary | proposed | NumioCore, mac | app-intents, spotlight, architecture | `docs/decisions/ADR-0005-contracts-and-ownership-surfaces.md` | a CLI alone does not add Numio actions to Spotlight; if the Mac surface is pursued, an app target should call the shared time-logic package. |
 
 ## spec
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| SPEC-0001 | Time Grammar and Arithmetic (Draft) | draft | NumioCore, cli | grammar, parsing, arithmetic, output | `docs/specs/time-grammar.md` | draft Numio grammar with examples table that becomes tests; open decisions D-1..D-4 must close before implementation. |
+| SPEC-0001 | Time Grammar and Arithmetic | draft | NumioCore, cli | grammar, parsing, arithmetic, output | `docs/specs/time-grammar.md` | the accepted behavior contract for Numio time expressions belongs here; observed CLI behavior is recorded separately and does not settle open product decisions. |
 
 ## initiative
 
@@ -37,21 +37,12 @@ Agents: grep this file by module/tag/status, then open only matching docs (TL;DR
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| EVAL-0001 | Model Bakeoff for Agents | active |  | models, opencode, benchmark | `docs/evals/model-bakeoff.md` | 3 real tasks from your repo, same brief and starting commit, 2–3 models; choose by tests, diff scope, and scope violations, not impression. |
-| EVAL-0002 | Retrieval Questions for Agent Context Check | active |  | context, retrieval, docs | `docs/evals/retrieval-questions.md` | 10 questions with known correct document; monthly ask agent and watch if it finds them without loading all docs/. |
-| EVAL-0003 | Friction Log (Where Process Slows You Down) | active |  | process, learning, friction | `docs/evals/friction-log.md` | log every time the agent process blocks you; weekly review spawns fixes to docs, prompts, and rules. |
+| EVAL-0001 | Model Comparison When Needed | active |  | models, opencode, evaluation | `docs/evals/model-bakeoff.md` | do not run recurring model bakeoffs; compare models only when a concrete quality or cost question needs an answer. |
 
 ## guide
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| GUIDE-0001 | Numio Operating Model (Two People and Agents) | active |  | management, process, agents | `docs/operating-model.md` | focus on ≤3 initiatives, one DRI per item, written pitch/ADR, weekly demo, agents as staff with permissions and review. |
-| GUIDE-0002 | Principles and Sources (Research as of 2026-10-01) | active |  | research, apple, agents, context, monorepo, opencode | `docs/guides/principles-and-sources.md` | synthesis of practices the operating model stands on. Links only where verified; rest cited by name and author, find by title. |
-| GUIDE-0003 | Weekend Plan (Start) | active |  | plan, weekend, setup | `docs/weekend-plan.md` | Saturday: kit, OpenCode, wedge, extract NumioCore, model bakeoff; Sunday: spec, two features in parallel worktrees, demo. |
-| GUIDE-0004 | Feature Teams with Agents: How to Form and Keep in Bounds | active | NumioCore, cli | agents, teams, ownership, worktree, sync | `docs/guides/feature-teams.md` | an agent feature team = owned paths + narrow permissions + charter in prompt + separate worktree and session + briefs and verifier; add a new team only when an independent module appears and your review is the bottleneck. |
-| GUIDE-0005 | Cross-Cutting Features: Temporary Delivery Crew | active | NumioCore, cli, mac | delivery, crew, interaction-modes, contracts, integration, teams | `docs/guides/cross-cutting-delivery.md` | for a feature touching all surfaces, assemble a temporary crew with one delivery-DRI who owns the outcome and integration, while standing teams keep code ownership; interaction follows phases: contracts, thin cross-cutting slice, parallel fill, integration, close. |
-| GUIDE-0006 | Review Policy by Risk and Escalation Rules | active |  | review, delegation, escalation, quality, docs | `docs/guides/review-policy.md` | review depends on change risk (T0–T3), not on who wrote it; human required for contracts, agent configs and releases, everything else goes through the verifier agent with sampled human review and escalation rules. |
-| GUIDE-0007 | Working with Underspecified Complex Features (Shaping) | active |  | shaping, discovery, spike, appetite, predictability | `docs/guides/shaping-underspecified-work.md` | an underspecified feature is first shaped by a human in a short spike (collaboration), producing a pitch + examples + contract drafts + unknowns register; only after gate G0 does work go to agents. |
-| GUIDE-0008 | Onboarding a New Developer | active |  | onboarding, team, zones, process | `docs/guides/onboarding-developer.md` | new developer reads the minimum, takes a small T1 task with a brief, then becomes a zone DRI and shapes fuzzy features; context comes from the repo, not from founders' heads. |
-| GUIDE-0009 | Solo Flow: Working with Agents in OpenCode | active |  | solo, workflow, opencode, onboarding, daily-loop | `docs/guides/solo-flow.md` | you wear three hats (Product, Zone, Reviewer); agents are your staff. Daily loop: brief → worktree → build → review → merge. Start with just `orchestrator`, `build`, `verifier`. |
-| ZONE-0000 | Zone Description Template | draft |  | template, zone | `docs/zones/_template.md` | short zone description (what it does, boundaries) for humans and agents; fill after zone extraction and update on every significant decision. |
+| GUIDE-0001 | Numio Operating Model | active |  | management, process, agents | `docs/operating-model.md` | one human owns each task; use the issue as the brief, implement in its isolated worktree, run checks, and add independent review only when risk justifies it. |
+| GUIDE-0006 | Review Policy by Risk | active |  | review, quality, docs | `docs/guides/review-policy.md` | run deterministic checks for every change; reserve independent review for riskier work and require a human for agent configuration and releases. |
+| GUIDE-0007 | Shaping Underspecified Work | active |  | shaping, discovery, appetite | `docs/guides/shaping-underspecified-work.md` | shape genuinely uncertain, multi-day product work with a human before implementation; small, specified changes need only an issue and tests. |
