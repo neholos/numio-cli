@@ -6,7 +6,9 @@ Numio adds and subtracts times and durations from your terminal.
 brew tap neholos/numio https://github.com/neholos/numio-cli
 brew trust --formula neholos/numio/numio
 brew install numio
+```
 
+```sh
 numio 12:30 + 02:15
 # 14:45
 ```
