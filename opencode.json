@@ -1,13 +1,46 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode/nemotron-3-ultra-free",
-  "default_agent": "implementer",
+  "default_agent": "build",
   "share": "disabled",
   "autoupdate": "notify",
   "compaction": {
     "auto": true,
     "prune": true,
     "reserved": 10000
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "task": {
+          "*": "deny",
+          "explore": "allow"
+        },
+        "edit": {
+          "*": "allow",
+          "AGENTS.md": "ask",
+          "opencode.json": "ask",
+          ".opencode/**": "ask",
+          ".agents/skills/**": "ask",
+          "Package.swift": "ask",
+          "Package.resolved": "ask",
+          ".github/**": "ask",
+          "Formula/**": "ask"
+        }
+      }
+    },
+    "plan": {
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      }
+    },
+    "explore": {
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      }
+    }
   },
   "permission": {
     "edit": "ask",
@@ -19,9 +52,15 @@
       "git status*": "allow",
       "git diff*": "allow",
       "git log*": "allow",
-      "python3 scripts/build-index.py*": "allow",
-      "python3 scripts/review-tier.py*": "allow",
-      "git push*": "deny",
+      "git show*": "allow",
+      "git rev-parse*": "allow",
+      "git worktree list*": "allow",
+      "git add*": "ask",
+      "git commit*": "ask",
+      "git push*": "ask",
+      "gh pr create*": "ask",
+      "gh pr merge*": "ask",
+      "gh issue close*": "ask",
       "rm -rf*": "deny"
     },
     "webfetch": "ask",

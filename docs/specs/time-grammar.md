@@ -1,14 +1,4 @@
----
-id: SPEC-0001
-title: Time Grammar and Arithmetic
-type: spec
-status: accepted
-date: 2026-10-02
-modules: [NumioCore, cli]
-tags: [grammar, parsing, arithmetic, output]
-owner: Sasha Jaroshevskii
----
-TL;DR: this contract defines the accepted behavior for Numio time expressions. The CLI is intentionally small and deterministic: expressions are tokenized, evaluated left-to-right, and formatted in a single, predictable way.
+# Time Grammar and Arithmetic
 
 > Status: accepted. The examples below are the source of truth for implementation and tests. The previous "Current" notes remain historical only.
 
