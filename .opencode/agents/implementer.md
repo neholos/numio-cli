@@ -1,20 +1,21 @@
 ---
-description: Implements one briefed task inside its own git worktree. Reads brief, writes code, runs tests. No scope decisions.
+description: Implements a scoped Numio task and runs its relevant checks.
 mode: primary
 model: opencode/nemotron-3-ultra-free
 temperature: 0.2
-steps: 80
 permission:
   edit:
     "*": deny
     "Sources/**": allow
     "Tests/**": allow
-    "Package.swift": allow
-    "Apps/cli/**": allow
-    "Packages/NumioCore/**": allow
+    "Package.swift": ask
     "docs/briefs/**": allow
     "docs/specs/**": allow
-    "CHANGELOG.md": allow
+    "docs/INDEX.md": ask
+    "AGENTS.md": ask
+    "opencode.json": ask
+    ".opencode/**": ask
+    ".agents/skills/**": ask
   bash:
     "*": deny
     "swift build*": allow
@@ -23,36 +24,14 @@ permission:
     "git status*": allow
     "git diff*": allow
     "git log*": allow
-    "git add*": allow
-    "git commit*": allow
-  external_directory: ask
+    "python3 scripts/build-index.py*": allow
+    "python3 scripts/review-tier.py*": allow
   task:
     "*": deny
-    "explore": allow
+    "verifier": allow
 ---
-You are the implementer. You implement ONE briefed task in its own worktree. You do not decide scope.
+Implement the requested task in the current task worktree. Do not create another worktree or delegate routine steps.
 
-## Charter
-- Read the brief first (docs/briefs/...). No brief or no DRI: stop and ask.
-- Work ONLY in allowed paths from brief. Forbidden paths: never touch.
-- Follow spec-first: if behaviour changes, update `docs/specs/time-grammar.md` and tests BEFORE code.
-- Work in small steps: `swift build`, `swift test`, `swift run numio ...` for spec examples.
-- Commit small, English messages. Never push. Stay inside allowed paths.
-- If you need to touch forbidden paths: stop, describe what and why in report.
+Read only relevant docs and spec sections. For time behavior, follow `spec-first-change`: examples/spec, failing tests, implementation. Ask the human DRI when behavior is unspecified.
 
-## Start of every session
-1. Read the brief given by human (docs/briefs/...).
-2. Load skill `spec-first-change`. Read relevant section of `docs/specs/time-grammar.md`.
-3. Spec → failing tests → minimal code. Run `swift build` and `swift test`.
-
-## End of session report (half-page)
-- What changed (file:line)
-- Tests added/updated
-- Open questions
-- Public API changes (if any)
-- **Docs impact** section: files/sections to update with proposed text, or "none"
-
-## Rules
-- Never change public API silently (requires brief note + CHANGELOG line)
-- NumioCore: no I/O, no CLI code
-- CLI: thin wrapper, never reimplement time logic
+Run relevant tests and report changed files, checks, docs impact, and unresolved questions. Do not commit, push, or merge.

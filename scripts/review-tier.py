@@ -7,8 +7,8 @@ Usage:
   python3 scripts/review-tier.py [BASE] --json
 
 Tiers (see docs/guides/review-policy.md):
-  T0 docs-only            -> docs-reviewer agent + CI checks
-  T1 code inside a zone   -> verifier agent + sampled human review
+  T0 docs-only            -> diff and metadata checks
+  T1 code inside a zone   -> build/tests; independent verifier when warranted
   T2 contracts/config     -> verifier + human review required
   T3 release/signing      -> human review + explicit go
 
@@ -25,15 +25,15 @@ import sys
 RULES = [
     (3, [".github/workflows/*release*", "Formula/*", "*.entitlements"]),
     (2, ["Package.swift", "Package.resolved", "opencode.json", "AGENTS.md", ".opencode/*", ".agents/*",
-         "docs/decisions/*", "docs/specs/*", "docs/zones/*", ".github/*", "scripts/*", "*/Vectors/*",
+         "docs/decisions/*", "docs/specs/*", ".github/*", "scripts/*", "*/Vectors/*",
          "Apps/mac/*"]),
     (1, ["Packages/*", "Apps/*", "Sources/*", "Tests/*", "*/Tests/*"]),
     (0, ["docs/*", "README.md", "CHANGELOG.md", "*.md"]),
 ]
 SOURCE_PREFIXES = ("Apps/cli/", "Packages/NumioCore/Sources/", "Sources/")
 REVIEWERS = {
-    0: "docs-reviewer agent + CI checks (agent may approve; human not required)",
-    1: "verifier agent; a human samples about one in three (see review policy)",
+    0: "diff and metadata checks",
+    1: "build/tests; independent verifier when warranted",
     2: "verifier agent AND a human reviewer (required)",
     3: "human reviewer AND an explicit go from the DRI (required)",
 }

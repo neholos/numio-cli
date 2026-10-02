@@ -8,8 +8,7 @@ metadata:
   workflow: github
 ---
 ## What I do
-Make releases boring and repeatable. Facts to verify first: the tap is installed with `brew tap neholos/numio`
-(so the tap repo is most likely `neholos/homebrew-numio`), and the repo already has a `release.yml` workflow. Read both before changing anything.
+Make releases boring and repeatable. Before changing anything, inspect the current formula, tags, and workflow files; do not assume release automation or a separate tap repository exists.
 
 ## Checklist
 1. `swift build` and `swift test` pass on the release commit. Spec and CHANGELOG are up to date.

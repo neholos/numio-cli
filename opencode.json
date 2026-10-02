@@ -1,17 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode/nemotron-3-ultra-free",
-  "small_model": "opencode/nemotron-3.5-lightning-free",
-  "default_agent": "orchestrator",
+  "default_agent": "implementer",
   "share": "disabled",
-"autoupdate": "notify",
+  "autoupdate": "notify",
   "compaction": {
     "auto": true,
     "prune": true,
     "reserved": 10000
   },
   "permission": {
-    "edit": "allow",
+    "edit": "ask",
     "bash": {
       "*": "ask",
       "swift build*": "allow",
@@ -20,7 +19,6 @@
       "git status*": "allow",
       "git diff*": "allow",
       "git log*": "allow",
-      "git worktree*": "allow",
       "python3 scripts/build-index.py*": "allow",
       "python3 scripts/review-tier.py*": "allow",
       "git push*": "deny",
@@ -29,247 +27,6 @@
     "webfetch": "ask",
     "skill": {
       "*": "allow"
-    }
-  },
-  "agent": {
-    "orchestrator": {
-      "mode": "primary",
-      "description": "Plans work, writes specs and task briefs, dispatches read-only subagents. Never edits code.",
-      "model": "opencode/nemotron-3-ultra-free",
-      "temperature": 0.2,
-      "permission": {
-        "edit": {
-          "*": "deny",
-          "docs/**": "allow",
-          "AGENTS.md": "ask"
-        },
-        "bash": {
-          "*": "deny",
-          "git status*": "allow",
-          "git diff*": "allow",
-          "git log*": "allow",
-          "git worktree*": "allow",
-          "ls *": "allow",
-          "python3 scripts/build-index.py*": "allow",
-          "python3 scripts/review-tier.py*": "allow",
-          "scripts/new-task.sh*": "allow"
-        },
-        "task": {
-          "*": "deny",
-          "explore": "allow",
-          "verifier": "allow",
-          "docs-writer": "allow",
-          "docs-reviewer": "allow",
-          "researcher": "allow"
-        }
-      }
-    },
-    "implementer": {
-      "mode": "primary",
-      "description": "Implements one briefed task inside its own git worktree. Reads brief, writes code, runs tests. No scope decisions.",
-      "model": "opencode/nemotron-3-ultra-free",
-      "temperature": 0.2,
-      "steps": 80,
-      "permission": {
-        "edit": {
-          "*": "deny",
-          "Sources/**": "allow",
-          "Tests/**": "allow",
-          "Package.swift": "allow",
-          "Apps/cli/**": "allow",
-          "Packages/NumioCore/**": "allow",
-          "docs/briefs/**": "allow",
-          "docs/specs/**": "allow",
-          "CHANGELOG.md": "allow"
-        },
-        "bash": {
-          "*": "deny",
-          "swift build*": "allow",
-          "swift test*": "allow",
-          "swift run*": "allow",
-          "git status*": "allow",
-          "git diff*": "allow",
-          "git log*": "allow",
-          "git add*": "allow",
-          "git commit*": "allow"
-        },
-        "external_directory": "ask",
-        "task": {
-          "*": "deny",
-          "explore": "allow"
-        }
-      }
-    },
-    "explore": {
-      "model": "opencode/nemotron-3.5-lightning-free"
-    },
-    "verifier": {
-      "mode": "subagent",
-      "description": "Independent read-only reviewer. Checks diff against brief and spec, runs build and tests, returns PASS or FAIL.",
-      "model": "opencode/mimo-v2.5-free",
-      "temperature": 0.1,
-      "permission": {
-        "edit": "deny",
-        "bash": {
-          "*": "deny",
-          "swift build*": "allow",
-          "swift test*": "allow",
-          "git diff*": "allow",
-          "git log*": "allow",
-          "git status*": "allow",
-          "python3 scripts/review-tier.py*": "allow",
-          "python3 scripts/build-index.py*": "allow"
-        }
-      }
-    },
-    "docs-writer": {
-      "mode": "subagent",
-      "description": "Writes and maintains project docs (pitches, ADRs, specs, changelog) from a brief. Edits docs/ only.",
-      "model": "opencode/nemotron-3.5-lightning-free",
-      "temperature": 0.3,
-      "permission": {
-        "edit": {
-          "*": "deny",
-          "docs/**": "allow",
-          "CHANGELOG.md": "allow",
-          "README.md": "allow"
-        },
-        "bash": {
-          "*": "deny",
-          "python3 scripts/build-index.py*": "allow"
-        }
-      }
-    },
-    "docs-reviewer": {
-      "mode": "subagent",
-      "description": "Independent read-only reviewer for docs-only changes (T0). Checks consistency, metadata, links, sensitive content.",
-      "model": "opencode/mimo-v2.5-free",
-      "temperature": 0.1,
-      "permission": {
-        "edit": "deny",
-        "bash": {
-          "*": "deny",
-          "python3 scripts/build-index.py*": "allow",
-          "python3 scripts/review-tier.py*": "allow",
-          "git diff*": "allow",
-          "git status*": "allow"
-        }
-      }
-    },
-    "researcher": {
-      "mode": "subagent",
-      "description": "Read-only web researcher. Finds authoritative external guidance (Apple HIG, Swift API Design Guidelines, CLI guidelines, standards).",
-      "model": "opencode/nemotron-3-ultra-free",
-      "temperature": 0.1,
-      "permission": {
-        "edit": "deny",
-        "bash": "deny",
-        "webfetch": "allow"
-      }
-    },
-    "team-core": {
-      "mode": "primary",
-      "description": "Feature team for NumioCore (parsing, arithmetic, formatting). Works only in its own worktree and paths. Use after Packages/NumioCore exists (I-001).",
-      "model": "opencode/nemotron-3-ultra-free",
-      "temperature": 0.2,
-      "steps": 80,
-      "permission": {
-        "edit": {
-          "*": "deny",
-          "Packages/NumioCore/**": "allow",
-          "docs/specs/**": "allow",
-          "docs/briefs/**": "allow",
-          "CHANGELOG.md": "allow"
-        },
-        "bash": {
-          "*": "deny",
-          "swift build*": "allow",
-          "swift test*": "allow",
-          "git status*": "allow",
-          "git diff*": "allow",
-          "git log*": "allow",
-          "git add*": "allow",
-          "git commit*": "allow"
-        },
-        "external_directory": "ask",
-        "task": {
-          "*": "deny",
-          "explore": "allow"
-        }
-      }
-    },
-    "team-cli": {
-      "mode": "primary",
-      "description": "Feature team for the CLI wrapper (argument handling, output, exit codes). Works only in its own worktree and paths. Use after Apps/cli exists (I-001).",
-      "model": "opencode/nemotron-3-ultra-free",
-      "temperature": 0.2,
-      "steps": 80,
-      "permission": {
-        "edit": {
-          "*": "deny",
-          "Apps/cli/**": "allow",
-          "docs/briefs/**": "allow",
-          "CHANGELOG.md": "allow"
-        },
-        "bash": {
-          "*": "deny",
-          "swift build*": "allow",
-          "swift test*": "allow",
-          "swift run*": "allow",
-          "git status*": "allow",
-          "git diff*": "allow",
-          "git log*": "allow",
-          "git add*": "allow",
-          "git commit*": "allow"
-        },
-        "external_directory": "ask",
-        "task": {
-          "*": "deny",
-          "explore": "allow"
-        }
-      }
-    }
-  },
-  "command": {
-    "brief": {
-      "description": "Turn a short idea into an impact report and a task brief (no code).",
-      "agent": "orchestrator",
-      "template": "Create a task brief for: $ARGUMENTS. Follow the brief command instructions in .opencode/commands/brief.md"
-    },
-    "review": {
-      "description": "Tier-aware review of current changes against a base branch (default main).",
-      "agent": "orchestrator",
-      "template": "Review changes against base: $ARGUMENTS. Follow the review command instructions in .opencode/commands/review.md"
-    },
-    "practice-check": {
-      "description": "Quick advisory crew. Checks a question against our rules and external best practices, answers FIX / LEAVE / DECIDE.",
-      "agent": "orchestrator",
-      "template": "Practice check: $ARGUMENTS. Follow the practice-check command instructions in .opencode/commands/practice-check.md"
-    },
-    "sync-docs": {
-      "description": "Consolidate Docs impact sections into README/CHANGELOG through the single writer, then review.",
-      "agent": "orchestrator",
-      "template": "Sync docs impact sections. Follow the sync-docs command instructions in .opencode/commands/sync-docs.md"
-    },
-    "feature": {
-      "description": "Run full feature workflow: brief → worktree → implement → verify → deliver.",
-      "agent": "orchestrator",
-      "template": "Run feature workflow for: $ARGUMENTS. Follow the feature command instructions in .opencode/commands/feature.md"
-    },
-    "implement": {
-      "description": "Implement an existing brief in a new worktree (requires brief to exist).",
-      "agent": "orchestrator",
-      "template": "Implement brief: $ARGUMENTS. Follow the implement command instructions in .opencode/commands/implement.md"
-    },
-    "verify": {
-      "description": "Run independent verification of current worktree against brief and spec.",
-      "agent": "verifier",
-      "template": "Verify worktree against brief: $ARGUMENTS. Follow the verify command instructions in .opencode/commands/verify.md"
-    },
-    "deliver": {
-      "description": "Finalize worktree: verify, then merge to main (human approval required).",
-      "agent": "orchestrator",
-      "template": "Deliver worktree: $ARGUMENTS. Follow the deliver command instructions in .opencode/commands/deliver.md"
     }
   }
 }
