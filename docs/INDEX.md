@@ -25,7 +25,7 @@ Agents: grep this file by module/tag/status, then open only matching docs (TL;DR
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| SPEC-0001 | Time Grammar and Arithmetic | draft | NumioCore, cli | grammar, parsing, arithmetic, output | `docs/specs/time-grammar.md` | the accepted behavior contract for Numio time expressions belongs here; observed CLI behavior is recorded separately and does not settle open product decisions. |
+| SPEC-0001 | Time Grammar and Arithmetic | accepted | NumioCore, cli | grammar, parsing, arithmetic, output | `docs/specs/time-grammar.md` | this contract defines the accepted behavior for Numio time expressions. The CLI is intentionally small and deterministic: expressions are tokenized, evaluated left-to-right, and formatted in a single, predictable way. |
 
 ## initiative
 
