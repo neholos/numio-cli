@@ -1,0 +1,43 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build DocC site
+        run: >-
+          swift package --allow-writing-to-directory .build/docc
+          generate-documentation --target numio --output-path .build/docc
+          --symbol-graph-minimum-access-level public
+          --transform-for-static-hosting --hosting-base-path numio-cli
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .build/docc
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
