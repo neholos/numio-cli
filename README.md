@@ -53,9 +53,11 @@ Output:
 
 ### Using Homebrew
 
+The Homebrew formula is maintained in this repository.
+
 ```bash
-brew tap neholos/numio
-brew install numio-cli
+brew tap neholos/numio https://github.com/neholos/numio-cli
+brew install numio
 ```
 
 ## 🏗️ Build from Source
