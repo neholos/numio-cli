@@ -17,7 +17,7 @@ Keep behaviour changes predictable by making the spec and its examples drive tes
 4. Turn each new example into a failing test in `Tests/`. Run `swift test` and confirm the failure. If SwiftPM reports that no test target exists, stop and ask before adding test infrastructure; never treat "no tests found" as a pass.
 5. Implement the smallest change in the existing Swift sources under `Sources/`. Keep CLI changes to argument handling and printing.
 6. Run `swift build` and `swift test`. Fix only what the task requires.
-7. Add a CHANGELOG line and note any output change that could break scripts.
+7. Report any output change that could break scripts.
 
 ## Edge cases to always consider
 Midnight wrap, negative results, 24:00, seconds, leading zeros, missing minutes, invalid input, multiple operands.

@@ -19,6 +19,6 @@ To build from source, run `swift build` and then `.build/debug/numio`. To run te
 
 ## Contributing with OpenCode
 
-Start with a scoped issue, make the change in its worktree, and run the relevant build and tests. See the [OpenCode development flow](docs/operating-model.md) for prompt guidance, verification, and delivery.
+For each issue, start OpenCode in its Git worktree and use the default Build agent to implement the change and run relevant checks. Use Plan when requirements are unclear and `@explore` to locate unfamiliar code. A new chat alone does not isolate changes, so use a separate worktree for concurrent tasks. Review the diff and tests; explicitly ask for commit, push, or PR actions when ready.
 
 Numio is licensed under the [MIT license](LICENSE.md).
