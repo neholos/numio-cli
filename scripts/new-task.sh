@@ -2,7 +2,7 @@
 # Create an isolated task: git worktree + branch + brief, and print how to start the feature-team agent.
 # Usage: scripts/new-task.sh <slug> <agent> [brief-file]
 #   slug        short kebab-case name, e.g. seconds-parsing
-#   agent       team-core | team-cli | build | ...
+#   agent       implementer | team-core | team-cli | ...
 #   brief-file  optional path to an existing brief (e.g. written by the orchestrator); otherwise the template is used
 # Env: BASE=<branch to start from> (default: current branch)
 set -euo pipefail

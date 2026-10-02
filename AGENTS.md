@@ -52,11 +52,11 @@ Do not edit README/CHANGELOG from a feature team: report a **Docs impact** secti
 - Reports to human: at most one page, with `file:line` references. Do not paste code back.
 
 ## Agents
-`orchestrator` (plans, specs, briefs; never edits code) → `build` or feature team (`team-core`, `team-cli`; implements in own worktree, only in owned paths) → `verifier` (read-only review plus tests).
-Helpers: `explore`, `docs-writer`, `docs-reviewer`, `researcher`. Start a task with `scripts/new-task.sh`. See `docs/guides/feature-teams.md`.
+`orchestrator` (plans, specs, briefs; never edits code) → `implementer` (implements in worktree) → `verifier` (read-only review plus tests).
+Helpers: `explore`, `docs-writer`, `docs-reviewer`, `researcher`. Start a task with `scripts/new-task.sh` or `/feature`. See `docs/guides/feature-teams.md`.
 Cross-cutting features (touch 2+ zones or change contracts C1-C3) get temporary delivery crew with one delivery-DRI: see `docs/guides/cross-cutting-delivery.md`.
 Models and permissions: `opencode.json` and `docs/decisions/ADR-0002-opencode-agents-and-models.md`.
 
 ## Skills (load on demand)
 `impact-analysis` before starting a feature · `decision-brief` before a product/architecture decision · `spec-first-change` for any behaviour change · `release-homebrew` when cutting a release · `practice-check` when asked whether something should change (advisory FIX / LEAVE / DECIDE).
-Slash commands: `/brief`, `/review`, `/practice-check`, `/sync-docs` (see `.opencode/commands/`).
+Slash commands: `/brief`, `/feature`, `/implement`, `/verify`, `/deliver`, `/review`, `/practice-check`, `/sync-docs` (see `.opencode/commands/`).
