@@ -43,6 +43,6 @@ Agents: grep this file by module/tag/status, then open only matching docs (TL;DR
 
 | id | title | status | modules | tags | path | TL;DR |
 |---|---|---|---|---|---|---|
-| GUIDE-0001 | Numio Operating Model | active |  | management, process, agents | `docs/operating-model.md` | one human owns each task; use the issue as the brief, implement in its isolated worktree, run checks, and add independent review only when risk justifies it. |
-| GUIDE-0006 | Review Policy by Risk | active |  | review, quality, docs | `docs/guides/review-policy.md` | run deterministic checks for every change; reserve independent review for riskier work and require a human for agent configuration and releases. |
+| GUIDE-0001 | Numio Operating Model | active |  | management, process, agents | `docs/operating-model.md` | one human owns each task; give OpenCode a precise issue, work in that issue's worktree, verify with deterministic checks, and add independent review only when risk justifies it. |
+| GUIDE-0006 | Review Policy by Risk | active |  | review, quality, docs | `docs/guides/review-policy.md` | run deterministic checks for every change; reserve independent review for riskier work and require a human for T2/T3 changes. |
 | GUIDE-0007 | Shaping Underspecified Work | active |  | shaping, discovery, appetite | `docs/guides/shaping-underspecified-work.md` | shape genuinely uncertain, multi-day product work with a human before implementation; small, specified changes need only an issue and tests. |
