@@ -57,8 +57,13 @@ The Homebrew formula is maintained in this repository.
 
 ```bash
 brew tap neholos/numio https://github.com/neholos/numio-cli
+brew trust --formula neholos/numio/numio
 brew install numio
 ```
+
+Homebrew requires explicit trust for formulae from third-party taps. This trusts
+only Numio's formula, not every formula in the tap. If you want to inspect what
+Homebrew will install, review the [formula](Formula/numio.rb) first.
 
 ## 🏗️ Build from Source
 
