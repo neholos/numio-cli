@@ -12,7 +12,7 @@ Tiers (see docs/guides/review-policy.md):
   T2 contracts/config     -> verifier + human review required
   T3 release/signing      -> human review + explicit go
 
-Docs that steer agents (AGENTS.md, specs, ADRs, skills, agent configs) are config, so they are T2, not T0.
+Docs that steer agents (AGENTS.md, guides, specs, ADRs, skills, agent configs) are config, so they are T2, not T0.
 Unknown paths default to T2 (safe default). The final tier is the maximum over all changed files.
 """
 import argparse
@@ -26,7 +26,7 @@ RULES = [
     (3, [".github/workflows/*release*", "Formula/*", "*.entitlements"]),
     (2, ["Package.swift", "Package.resolved", "opencode.json", "AGENTS.md", ".opencode/*", ".agents/*",
          "docs/decisions/*", "docs/specs/*", ".github/*", "scripts/*", "*/Vectors/*",
-         "Apps/mac/*"]),
+         "Apps/mac/*", "docs/operating-model.md", "docs/guides/*"]),
     (1, ["Packages/*", "Apps/*", "Sources/*", "Tests/*", "*/Tests/*"]),
     (0, ["docs/*", "README.md", "CHANGELOG.md", "*.md"]),
 ]

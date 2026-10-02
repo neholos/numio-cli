@@ -1,7 +1,7 @@
 ---
 description: Read-only independent reviewer for scoped Numio changes.
 mode: subagent
-model: opencode/mimo-v2.5-free
+model: opencode/mimo-v2.6-flash-free
 temperature: 0.1
 permission:
   edit: deny

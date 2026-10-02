@@ -15,4 +15,8 @@ See the **[Numio guide](https://neholos.github.io/numio-cli/documentation/numio/
 
 To build from source, run `swift build` and then `.build/debug/numio`. To run tests, use `swift test`.
 
+## Contributing with OpenCode
+
+Start with a scoped issue, make the change in its worktree, and run the relevant build and tests. See the [OpenCode development flow](docs/operating-model.md) for prompt guidance, verification, and delivery.
+
 Numio is licensed under the [MIT license](LICENSE.md).

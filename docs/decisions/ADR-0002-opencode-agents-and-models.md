@@ -7,7 +7,7 @@ date: 2026-10-02
 tags: [opencode, agents, models, privacy, cost]
 owner: TBD
 ---
-TL;DR: Nemotron 3 Ultra Free is the implementation candidate and MiMo-V2.5 Free is the optional independent verifier; neither model's quality on this repository has been measured.
+TL;DR: Nemotron 3 Ultra Free is the implementation candidate and MiMo-V2.6 Flash Free is the optional independent verifier; neither model's quality on this repository has been measured.
 
 ## Context
 The model list, pricing, privacy terms, and free availability can change. Check the current OpenCode Zen documentation before relying on them. Do not send secrets or private business information to free-model endpoints.
@@ -18,7 +18,7 @@ Published model scores are vendor or aggregator results and do not establish whi
 | Role | Model | Use |
 |------|-------|-----|
 | `implementer` | `opencode/nemotron-3-ultra-free` | Default scoped implementation |
-| `verifier` | `opencode/mimo-v2.5-free` | Read-only review when independent review is warranted |
+| `verifier` | `opencode/mimo-v2.6-flash-free` | Read-only review when independent review is warranted |
 
 The different-family reviewer is a hypothesis for a second perspective, not a demonstrated reduction in correlated errors. Deterministic build and test results remain primary.
 
